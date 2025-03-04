@@ -6,13 +6,14 @@ header('Access-Control-Allow-Methods: POST');
 header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,content-Type,Access-Control-Allow-Methods,Athorization, X-Requested-With');
 
 $data = json_decode(file_get_contents("php://input"), true);
-$name = $data['s_name'];
-$age = $data['s_age'];
-$city = $data['s_city'];
+$firstName = $data['firstName'];
+$lastName = $data['lastName'];
+$phone = $data['phone'];
+$email = $data['email'];
 
 include('config.php');
 
-$sql = "INSERT INTO students(s_name,s_age,s_city) VALUES('$name',$age,'$city')";
+$sql = "INSERT INTO students(firstName,lastName,phone,email) VALUES('$firstName','$lastName','$phone','$email')";
 if (mysqli_query($conn, $sql)) {
     echo json_encode(array('message' => 'Student Record Inserted.', 'status' => true));
 } else {
